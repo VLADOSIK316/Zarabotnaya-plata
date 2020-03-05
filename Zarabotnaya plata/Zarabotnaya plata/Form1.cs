@@ -30,22 +30,24 @@ namespace Zarabotnaya_plata
         private void button1_Click(object sender, EventArgs e)
         {
             con.Open();
-            SqlCommand com = new SqlCommand($"SELECT * FROM manager where Login_manager = '{textBox1.Text}' and Password ='{textBox2.Text}'",con);
+            SqlCommand com = new SqlCommand($"Select [FIO_manager] From manager where Login_manager = '{textBox1.Text}' and Password ='{textBox2.Text}'",con);
             SqlDataReader dr = com.ExecuteReader();
             if (dr.HasRows)
-            {              
+            {
+                dr.Read();           
                 MessageBox.Show("Вход выполнен");
                 Form2 fm = new Form2();
+                dr.Close();
+                con.Close();
                 fm.Show();
                 this.Hide();
-                dr.Close();
-
             }
             else
                 MessageBox.Show("Неверно введен пароль или логин");
-           
-            con.Close();
-               
+
+           if (con.State == ConnectionState.Open)
+                con.Close();
+
         }
     }
 }

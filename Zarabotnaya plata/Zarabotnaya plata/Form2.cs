@@ -14,7 +14,7 @@ namespace Zarabotnaya_plata
     public partial class Form2 : Form
 
     {
-        SqlConnection con = new SqlConnection("Data Source = 303-6//SQLSERVER; Initial Catalog = Zarplati ; Integrated Security = true;");
+        SqlConnection con = new SqlConnection("Data Source = 303-6\\SQLSERVER; Initial Catalog = Zarplati ; Integrated Security = true;");
 
 
         public Form2()
@@ -46,7 +46,7 @@ namespace Zarabotnaya_plata
         private void Form2_Load(object sender, EventArgs e)
         {
             con.Open();
-            SqlCommand com = new SqlCommand($"Select * From coeefs, grade Where coeffs.id='{id}' AND coeefs.id=grade.id",con);
+            SqlCommand com = new SqlCommand($"Select * From coeefs, grade Where coeefs.id='{id}' AND coeefs.id=grade.id",con);
             SqlDataReader dr = com.ExecuteReader(); 
             if (dr.HasRows)
             {
@@ -57,7 +57,7 @@ namespace Zarabotnaya_plata
                 textBox4.Text = dr["Koef_Analiz"].ToString();
                 textBox5.Text = dr["Koef_device"].ToString();
                 textBox6.Text= dr["Koef_servicez"].ToString();
-                textBox7.Text=dr["Koef_time"].ToString();
+                textBox7.Text= dr["Koef_time"].ToString();
                 textBox8.Text= dr["coef_complexity"].ToString();
                 textBox9.Text = dr["Koef_money"].ToString();
                 dr.Close();
