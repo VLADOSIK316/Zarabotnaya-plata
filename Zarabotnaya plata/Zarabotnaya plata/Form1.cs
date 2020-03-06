@@ -49,5 +49,10 @@ namespace Zarabotnaya_plata
                 con.Close();
 
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
